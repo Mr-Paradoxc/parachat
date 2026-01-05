@@ -38,11 +38,11 @@ const initialValue: DiscordState = {
   server: undefined,
   callId: undefined,
   channelsByCategories: new Map(),
-  changeServer: () => {},
-  createServer: () => {},
-  createChannel: () => {},
-  createCall: async () => {},
-  setCall: () => {},
+  changeServer: () => { },
+  createServer: () => { },
+  createChannel: () => { },
+  createCall: async () => { },
+  setCall: () => { },
 };
 
 const DiscordContext = createContext<DiscordState>(initialValue);
@@ -161,14 +161,12 @@ export const DiscordContextProvider: any = ({
       try {
         const response = await messagingChannel.create();
         console.log('[DiscordContext - createServer] Response: ', response);
-        if (myState.server) {
-          await createCall(
-            videoClient,
-            myState.server,
-            'General Voice Channel',
-            userIds
-          );
-        }
+        await createCall(
+          videoClient,
+          { name, image: imageUrl },
+          'General Voice Channel',
+          userIds
+        );
         changeServer({ name, image: imageUrl }, client);
       } catch (err) {
         console.error(err);
