@@ -1,6 +1,8 @@
 import { UserObject } from '@/model/UserObject';
 import { StreamChat } from 'stream-chat';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const serverClient = StreamChat.getInstance(
     process.env.NEXT_PUBLIC_STREAM_API_KEY!,
