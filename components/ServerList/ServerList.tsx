@@ -21,8 +21,8 @@ const ServerList = () => {
       channels
         .map((channel: Channel) => {
           return {
-            name: (channel.data?.data?.server as string) ?? 'Unknown',
-            image: channel.data?.data?.image,
+            name: ((channel.data as any)?.data?.server as string) ?? 'Unknown',
+            image: (channel.data as any)?.data?.image,
           };
         })
         .filter((server: DiscordServer) => server.name !== 'Unknown')
@@ -46,9 +46,8 @@ const ServerList = () => {
   return (
     <div className='bg-dark-gray h-full flex flex-col items-center'>
       <button
-        className={`block p-3 aspect-square sidebar-icon border-t-2 border-t-gray-300 ${
-          activeServer === undefined ? 'selected-icon' : ''
-        }`}
+        className={`block p-3 aspect-square sidebar-icon border-t-2 border-t-gray-300 ${activeServer === undefined ? 'selected-icon' : ''
+          }`}
         onClick={() => changeServer(undefined, client)}
       >
         <div className='rounded-icon discord-icon'></div>
@@ -58,9 +57,8 @@ const ServerList = () => {
           return (
             <button
               key={server.name}
-              className={`p-4 sidebar-icon ${
-                server === activeServer ? 'selected-icon' : ''
-              }`}
+              className={`p-4 sidebar-icon ${server === activeServer ? 'selected-icon' : ''
+                }`}
               onClick={() => {
                 changeServer(server, client);
               }}
